@@ -1,0 +1,163 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans";
+  font-weight: 300;
+}
+#test{
+margin-top: 20px;
+margin-left: 350px;
+
+}
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+h2 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+}
+h4 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+}
+h5 {
+  margin: 0;
+  padding: 5px 0px 5px 0px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+
+      .NavBar {
+        padding: 0px 24px 0px 24px;
+        margin: 0;
+        width: 100%;
+        height: 40px;
+        font-family: "Open Sans Condensed";
+        font-size: 16px;
+        line-height: 40px;
+        background-color: black;
+        box-sizing: border-box;
+      }
+      .NavBar a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+      .NavBar a:hover {
+        color: #dddddd;
+      }
+      .NavBar>div {
+        padding: 0;
+        margin: 0;
+        width: 25%;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+      .NavBar>ul {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        text-align: right;
+        width: 74%;
+      }
+      .NavBar>ul>li {
+        padding-left: 32px;
+        display: inline-block;
+      }
+      @media (max-width: 640px) {
+        .NavBar>ul {
+          display: none;
+        }
+      }
+      .Resp1ColMax640 {
+        margin: 0;
+        padding: 0;
+        width: 640px;
+        box-sizing: border-box;
+        margin: auto;
+      }
+      @media (max-width: 640px) {
+        .Resp1ColMax640 {
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+
+        .Resp1ColMax640 h4 {
+          padding: 20px;
+          margin: 0;
+          line-height: 60px;
+          background-color: #afeeee;
+        }
+
+.formfield {
+  margin-top: 30px;
+}
+.formfield p {
+  padding: 20px;
+}
+.formfield input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid red;
+  font-size: 30px;
+  padding: 20px;
+}
+
+
+.formarea {
+  margin-top: 30px;
+}
+.formarea p {
+  padding: 20px;
+}
+.formarea textarea {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  border: 1px solid red;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.info {
+  margin-top: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 30px;
+  padding: 20px;
+}
+.info div {
+  width: 80%;
+  box-sizing: border-box;
+  font-size: 30px;
+  display: inline-block;
+}
+.info img {
+  width: 30px;
+  height: 30px;
+  vertical-align: top;
+}
+button {
+  margin: 30px;
+  padding: 20px;
+  font-weight: 400;
+  font-size: 30px;
+  color: #ffffff;
+  background-color: darkturquoise;
+  border: 0px;
+  text-indent: center;
+}
+
+.star {
+  color: red;
+}
