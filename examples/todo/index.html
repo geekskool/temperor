@@ -4,23 +4,13 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta name="keywords" content="Light-Weight, todos, tinix, vanillajs" />
     <title>Temperor - Todos</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>-->
     <link href='css/todo.css' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
-  <template data-name="NavBar">
-    <div class='NavBar'>
-      <div data-field='brand'></div>
-      <ul>
-        <template data-name='NavBarLink'>
-          <li data-field='link'></li>
-        </template>
-      </ul>
-    </div>
-  </template>
 
   <template data-name="Resp1ColMax640">
     <div class="Resp1ColMax640">
@@ -78,11 +68,12 @@
 
   </template>
 
-<template data-name='test'>
-<div id="test">
-<input type="checkbox">Get Milk.
+<template data-name='todo'>
+  <div id="todos">
+  <input type="checkbox">
+  <span data-field='todo'></span>
+  <button class="delete">Delete</button>
 </template>
-</div>
 <script src="js/bundle.js"></script>
 </body>
 <html>

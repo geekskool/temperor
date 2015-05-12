@@ -1,9 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var $ = require('./tinix.js');
-$.supported = !!document.addEventListener
+
 if ($.supported && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
 }
+$.isString = function(str) {
+  return Object.prototype.toString.call(str) === '[object String]'
+}
+
 function Template(name) {
 
   this.name = name
@@ -215,125 +219,32 @@ var Template = require('../../../lib/temperor.js');
 
 function start() {
 
-  new Template('Resp1ColMax640').append()
+  new Template('Resp1ColMax640').append();
 
-  var emailTemplate = new Template('email')
+  var emailTemplate = new Template('email');
 
   emailTemplate.willRender(function(elem) {
+    var emailinput = $('input', elem);
+    emailinput.on('change', function(e) {
+      newTodo({todo: emailinput.value});
+      emailinput.value = '';
+    });
+  });
 
-      var emailinput = $('input', elem)
+  function newTodo(data) {
+    var todoTemplate = new Template('todo');
+    todoTemplate.willRender(function(elem){
+      $('button', elem).on('click', function(e){
+        elem.parentNode.removeChild(elem);
+      });
 
-    /*  emailinput.on('change', function(e) {
-        var email = emailinput.value
-        if (email.length > 3 && /^[\w\.-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$/.test(email)) {
-          emailinput.disabled = true
-          $.postJSON("/apply", {email: email}, function(err, res) {
-            if (err) {
-              alert("Connection Error")
-              emailinput.disabled = false
-            } else {
-              if (res.error) {
-                alert(res.message)
-                emailinput.disabled = false
-              } else {
-                elem.style.display = 'none'
-                codeTemplate.append()
-              }
-            }
-          })
+    });
+    todoTemplate.append(data);
+  }
 
-        } else {
-          alert("Invalid Email Address")
-        }
-        e.preventDefault()
-      })*/
-
-  })
-
-  var codeTemplate = new Template('code')
-
-  codeTemplate.willRender(function(elem) {
-
-      var codeinput = $('input', elem)
-      codeinput.on('change', function(e) {
-        var code = e.target.value
-        if (code.length === 6 && /^\d{6}$/.test(code)) {
-          codeinput.disabled = true
-          $.postJSON("/apply", {code: code}, function(err, res) {
-            if (err) {
-              alert("Connection Error")
-              codeinput.disabled = false
-            } else {
-              if (res.error) {
-                alert(res.message)
-                codeinput.disabled = false
-              } else {
-                elem.style.display = 'none'
-                infoTemplate.append({info: res.email})
-                applicationTemplate.append()
-              }
-            }
-          })
-
-        } else {
-          alert("Invalid Code")
-        }
-        e.preventDefault()
-      })
-
-  })
-
-  var infoTemplate = new Template('info')
-
-  var applicationTemplate = new Template('application')
-
-  applicationTemplate.willRender(function(elem) {
-
-      var button = $('button', elem)
-      button.on('click', function(e) {
-
-        var data = this.getData()
-        var emptyFields = false
-        Object.keys(data).forEach(function(key) {
-          if (data[key].trim().length == 0) emptyFields = true
-        })
-
-        if (emptyFields) {
-          alert("All Fields are mandatory")
-        } else {
-
-          button.disabled = true
-          $.postJSON("/apply", data, function(err, res) {
-            if (err) {
-              alert("Connection Error")
-              button.disabled = false
-            } else {
-              if (res.error) {
-                alert(res.message)
-                button.disabled = false
-              } else {
-                elem.style.display = 'none'
-                infoTemplate.append({
-                  info: 'Thank you for your application. You will hear from us shortly.'
-                })
-              }
-            }
-          })
-
-        }
-
-        e.preventDefault()
-      }.bind(this))
-
-  })
-
-  emailTemplate.append()
-  new Template('test').append()
-  new Template('test').append()
-  new Template('test').append()
-
+  emailTemplate.append();
 }
 
-$.ready(start)
+$.ready(start);
 
 },{"../../../lib/temperor.js":1,"../../../lib/tinix.js":2}]},{},[3]);

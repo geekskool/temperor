@@ -4,7 +4,7 @@ body {
   font-family: "Open Sans";
   font-weight: 300;
 }
-#test{
+#todos{
 margin-top: 20px;
 margin-left: 350px;
 
@@ -146,16 +146,6 @@ h5 {
   width: 30px;
   height: 30px;
   vertical-align: top;
-}
-button {
-  margin: 30px;
-  padding: 20px;
-  font-weight: 400;
-  font-size: 30px;
-  color: #ffffff;
-  background-color: darkturquoise;
-  border: 0px;
-  text-indent: center;
 }
 
 .star {
