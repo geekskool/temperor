@@ -14,66 +14,23 @@
 
   <template data-name="Resp1ColMax640">
     <div class="Resp1ColMax640">
-
-      <h4>TINY - TODOS</h4>
-      <template data-name='email'>
+      <h4>Temperor - Todos</h4>
+      <template data-name='todo-input'>
         <div class='formfield'>
           <input type='text' placeholder='Type your todo and hit - Enter'/>
         </div>
       </template>
 
-      <template data-name='code'>
-        <div class='formfield'>
-          <p>A verification code has been sent to your email address.<br/>
-          Type your verification code and hit - enter key</p>
-          <input type='text' placeholder='000000'/>
-        </div>
-      </template>
-
-      <template data-name='info'>
-        <div class='info'>
-          <div data-field='info'></div>
-          <img src='img/tick.png'/>
-        </div>
-      </template>
-
-      <template data-name='application'>
-        <div>
-        <div class='formfield'>
-          <p><span class='star'>* </span>Your Full Name</p>
-          <input type='text' placeholder='Full Name' data-field='name'/>
-        </div>
-        <div class='formfield'>
-          <p><span class='star'>* </span>Your 10 digit Mobile No with country code</p>
-          <input type='text' placeholder='+99 9999999999' data-field='cell'/>
-        </div>
-        <div class='formarea'>
-          <p><span class='star'>* </span>Links to your social Networks. LinkedIn, Github, Twitter, Facebook. (One on each line)</p>
-          <textarea  data-field='links'></textarea>
-        </div>
-        <div class='formarea'>
-          <p><span class='star'>* </span>Which are the programming languages you know? And how many years of experience do you have in each of them. (One on each line)</p>
-          <textarea  data-field='languages'></textarea>
-        </div>
-        <div class='formarea'>
-          <p><span class='star'>* </span>Tell us why you think you are eligible for joining Geekskool?</p>
-          <textarea  data-field='eligible'></textarea>
-        </div>
-        <button>APPLY</button>
-        </div>
-      </template>
-
-
-    </div>
-
+      <template data-name='todo'>
+        <div id="todos">
+        <input type="checkbox">
+        <span data-field='todo'></span>
+        <button class="delete">Delete</button>
+        <input type='text' placeholder=''/>        
+    </template>
+  </div>
   </template>
 
-<template data-name='todo'>
-  <div id="todos">
-  <input type="checkbox">
-  <span data-field='todo'></span>
-  <button class="delete">Delete</button>
-</template>
 <script src="js/bundle.js"></script>
 </body>
 <html>

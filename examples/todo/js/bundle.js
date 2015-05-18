@@ -4,9 +4,6 @@ var $ = require('./tinix.js');
 if ($.supported && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
 }
-$.isString = function(str) {
-  return Object.prototype.toString.call(str) === '[object String]'
-}
 
 function Template(name) {
 
@@ -69,6 +66,11 @@ Template.prototype.append = function(data) {
 
 }
 
+Template.prototype.remove = function(elem) {
+  elem.parentNode.removeChild(elem)
+  this.clones.splice(this.clones.indexOf(elem),1)
+}
+
 /*
  * If callback will call callback with error and responseBody or
  * json object if Json response. error is called with response object
@@ -123,7 +125,6 @@ module.exports = Template
 // tinix.js
 //
 // Copyright 2013 - Santosh Rajan - santoshrajan.com
-//
 
 function tinix(selector, elem) {
     elem = elem || document
@@ -162,13 +163,17 @@ tinix.display = function(selector, val) {
 }
 
 tinix.ready = function(func) {
-    if (document.readyState == "loading") {
-        document.onreadystatechange = function() {
-            if (document.readyState == "interactive") func()
-        }
-    } else {
-        func()
-    }
+  document.addEventListener('DOMContentLoaded', function() {func()})
+}
+
+tinix.isString = function(str) {
+  return typeof(str) === 'string'
+}
+
+tinix.isArray = Array.isArray
+
+tinix.isObject = function(str) {
+  return Object.prototype.toString.call(str) === '[object Object]'
 }
 
 tinix.getR = function(callback) {
@@ -186,6 +191,7 @@ tinix.getR = function(callback) {
     }
     return request
 }
+
 
 // get(url, callback [,overrideMimeType])
 tinix.get = function(url, callback, overrideMimeType) {
@@ -221,26 +227,21 @@ function start() {
 
   new Template('Resp1ColMax640').append();
 
-  var emailTemplate = new Template('email');
-
+  var emailTemplate = new Template('todo-input');
   emailTemplate.willRender(function(elem) {
-    var emailinput = $('input', elem);
-    emailinput.on('change', function(e) {
-      newTodo({todo: emailinput.value});
-      emailinput.value = '';
+    var todoinput = $('input', elem);
+    todoinput.on('change', function(e) {
+      todoTemplate.append({todo: todoinput.value});
+      todoinput.value = '';
     });
   });
 
-  function newTodo(data) {
-    var todoTemplate = new Template('todo');
-    todoTemplate.willRender(function(elem){
-      $('button', elem).on('click', function(e){
-        elem.parentNode.removeChild(elem);
-      });
-
+  var todoTemplate = new Template('todo');
+  todoTemplate.willRender(function(elem) {
+    $('button', elem).on('click', function(e) {
+      todoTemplate.remove(elem);
     });
-    todoTemplate.append(data);
-  }
+  });
 
   emailTemplate.append();
 }

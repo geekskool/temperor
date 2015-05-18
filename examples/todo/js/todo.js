@@ -5,26 +5,21 @@ function start() {
 
   new Template('Resp1ColMax640').append();
 
-  var emailTemplate = new Template('email');
-
+  var emailTemplate = new Template('todo-input');
   emailTemplate.willRender(function(elem) {
-    var emailinput = $('input', elem);
-    emailinput.on('change', function(e) {
-      newTodo({todo: emailinput.value});
-      emailinput.value = '';
+    var todoinput = $('input', elem);
+    todoinput.on('change', function(e) {
+      todoTemplate.append({todo: todoinput.value});
+      todoinput.value = '';
     });
   });
 
-  function newTodo(data) {
-    var todoTemplate = new Template('todo');
-    todoTemplate.willRender(function(elem){
-      $('button', elem).on('click', function(e){
-        elem.parentNode.removeChild(elem);
-      });
-
+  var todoTemplate = new Template('todo');
+  todoTemplate.willRender(function(elem) {
+    $('button', elem).on('click', function(e) {
+      todoTemplate.remove(elem);
     });
-    todoTemplate.append(data);
-  }
+  });
 
   emailTemplate.append();
 }
