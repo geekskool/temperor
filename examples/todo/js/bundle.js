@@ -227,23 +227,23 @@ function start() {
 
   new Template('Resp1ColMax640').append();
 
-  var emailTemplate = new Template('todo-input');
-  emailTemplate.willRender(function(elem) {
+  var todoInput = new Template('todo-input');
+  todoInput.willRender(function(elem) {
     var todoinput = $('input', elem);
     todoinput.on('change', function(e) {
-      todoTemplate.append({todo: todoinput.value});
+      todo.append({todo: todoinput.value});
       todoinput.value = '';
     });
   });
 
-  var todoTemplate = new Template('todo');
-  todoTemplate.willRender(function(elem) {
+  var todo = new Template('todo');
+  todo.willRender(function(elem) {
     $('button', elem).on('click', function(e) {
-      todoTemplate.remove(elem);
+      todo.remove(elem);
     });
   });
 
-  emailTemplate.append();
+  todoInput.append();
 }
 
 $.ready(start);
