@@ -31,6 +31,10 @@ function start() {
       storeTodos();
     });
 
+    $('.check', elem).on('click', function(e) {
+      storeTodos();
+    });
+
     $('.todo-text',elem).on('dblclick', function(e){
       $.forEach('.todo-main',elem,function(el){el.classList.add('hidden');});
       $('.edit-todo',elem).classList.add('editing');
@@ -50,13 +54,12 @@ function start() {
         storeTodos();
         $('.edit-todo',elem).classList.remove('editing');
       }
-
     });
   });
 
   TodoInput.append();
   JSON.parse(localStorage.getItem('todos')).forEach(function(elem){
-    todo.append({todo: elem.todo});});
+    todo.append(elem);});
 }
 
 $.ready(start);

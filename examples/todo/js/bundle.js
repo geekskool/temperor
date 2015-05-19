@@ -49,7 +49,9 @@ Template.prototype.append = function(data) {
   if (data) {
     Object.keys(data).forEach(function(key) {
       var dataField = $('[data-field=' + key + ']', clone)
-      if (dataField) {
+      if(dataField.type === 'checkbox')
+        dataField.checked = data[key]
+      else if (dataField) {
         var value = data[key]
         if ($.isString(value) && value.match(/</)) {
           dataField.innerHTML = value
@@ -109,7 +111,10 @@ Template.prototype.getData = function(index) {
   dataFields.forEach(function(dataField) {
     var key = dataField.getAttribute('data-field'),
         value
-    if (dataField.tagName === 'INPUT' || dataField.tagName == 'TEXTAREA') {
+    if(dataField.type && dataField.type === 'checkbox') {
+      value = dataField.checked
+    }
+    else if (dataField.tagName === 'INPUT' || dataField.tagName == 'TEXTAREA') {
       value = dataField.value
     } else {
       value = dataField.textContent
@@ -253,6 +258,10 @@ function start() {
       storeTodos();
     });
 
+    $('.check', elem).on('click', function(e) {
+      storeTodos();
+    });
+
     $('.todo-text',elem).on('dblclick', function(e){
       $.forEach('.todo-main',elem,function(el){el.classList.add('hidden');});
       $('.edit-todo',elem).classList.add('editing');
@@ -272,13 +281,12 @@ function start() {
         storeTodos();
         $('.edit-todo',elem).classList.remove('editing');
       }
-
     });
   });
 
   TodoInput.append();
   JSON.parse(localStorage.getItem('todos')).forEach(function(elem){
-    todo.append({todo: elem.todo});});
+    todo.append(elem);});
 }
 
 $.ready(start);
