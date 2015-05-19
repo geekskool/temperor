@@ -43,3 +43,13 @@ margin-left: 30px;
   font-size: 30px;
   padding: 20px;
 }
+
+.edit-todo{
+  display: none;
+}
+.hidden{
+display: none;
+}
+.editing{
+  display: inline;
+}
