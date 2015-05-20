@@ -35,7 +35,7 @@ function start() {
       storeTodos();
     });
 
-    $('.todo-text',elem).on('dblclick', function(e){
+    elem.on('dblclick', function(e){
       $.forEach('.todo-main',elem,function(el){el.classList.add('hidden');});
       $('.edit-todo',elem).classList.add('editing');
       $('.edit-todo',elem).focus();

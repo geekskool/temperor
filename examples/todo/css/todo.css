@@ -4,11 +4,62 @@ body {
   font-family: "Open Sans";
   font-weight: 300;
 }
-#todos{
-margin-top: 20px;
-margin-left: 30px;
 
+.todos{
+  width: 100%;
+  margin-top: 0px;
+  margin-left: 0px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  font-size: 30px;
+  padding: 10px;
 }
+.todos:not(:last-child){
+  border-bottom: 0px;
+}
+
+.todos:hover .delete{
+display: block;
+}
+
+input[type="checkbox"] {
+outline: none;
+}
+
+.check {
+  -webkit-appearance: none;
+}
+
+ .check:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="5"/></svg>');
+}
+.check:checked:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+
+.check:checked ~label {
+  text-decoration: line-through;
+}
+
+.delete {
+  display:none;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: middle;
+	font-family: inherit;
+	font-weight: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	float: right;
+}
+.delete:after {
+	content: '×';
+}
+
+
 .Resp1ColMax640 {
   margin: 0;
   padding: 0;
@@ -47,9 +98,15 @@ margin-left: 30px;
 .edit-todo{
   display: none;
 }
+
 .hidden{
 display: none;
 }
+
 .editing{
   display: inline;
+  width: 97%;
+  border: 0px;
+  font-size: 22px;
+  padding: 15px;
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta name="keywords" content="Light-Weight, todos, tinix, vanillajs" />
     <title>Temperor - Todos</title>
@@ -22,13 +23,15 @@
       </template>
 
       <template data-name='todo'>
-        <div id="todos">
-        <input data-field='checked' type="checkbox" class="check todo-main">
-        <span data-field='todo' class="todo-text todo-main"></span>
+        <div class="todos">
+          <div class='todo-main'>
+            <input data-field='checked' type="checkbox" class="check"></input>
+            <label data-field='todo' class="todo-text"></label>
+            <button class="delete"></button>
+          </div>
         <input type='text' class='edit-todo' placeholder=''/>
-        <button class="todo-main delete">Delete</button>
+      </div>
     </template>
-  </div>
   </template>
 
 <script src="js/bundle.js"></script>
