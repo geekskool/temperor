@@ -228,6 +228,7 @@ function start() {
   function storeTodos () {
     var items = [];
     for(var i = 0; i< todo.clones.length; i++) {
+      console.log(todo.getData(i));
       items.push(todo.getData(i));
     }
     localStorage.setItem('todos',JSON.stringify(items));
