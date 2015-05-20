@@ -49,9 +49,7 @@ Template.prototype.append = function(data) {
   if (data) {
     Object.keys(data).forEach(function(key) {
       var dataField = $('[data-field=' + key + ']', clone)
-      if(dataField.type === 'checkbox')
-        dataField.checked = data[key]
-      else if (dataField) {
+      if (dataField) {
         var value = data[key]
         if ($.isString(value) && value.match(/</)) {
           dataField.innerHTML = value
@@ -111,10 +109,7 @@ Template.prototype.getData = function(index) {
   dataFields.forEach(function(dataField) {
     var key = dataField.getAttribute('data-field'),
         value
-    if(dataField.type && dataField.type === 'checkbox') {
-      value = dataField.checked
-    }
-    else if (dataField.tagName === 'INPUT' || dataField.tagName == 'TEXTAREA') {
+    if (dataField.tagName === 'INPUT' || dataField.tagName == 'TEXTAREA') {
       value = dataField.value
     } else {
       value = dataField.textContent
