@@ -3,15 +3,6 @@ var Template = require('../../../lib/temperor.js');
 
 function start() {
 
-  function storeTodos () {
-    var items = [];
-    for(var i = 0; i< todo.clones.length; i++) {
-      console.log(todo.getData(i));
-      items.push(todo.getData(i));
-    }
-    localStorage.setItem('todos',JSON.stringify(items));
-  }
-
   new Template('Resp1ColMax640').append();
 
   var TodoInput = new Template('todo-input');
@@ -25,6 +16,8 @@ function start() {
     });
   });
 
+  TodoInput.append();
+
   var todo = new Template('todo');
   todo.willRender(function(elem) {
     $('.delete', elem).on('click', function(e) {
@@ -37,28 +30,28 @@ function start() {
     });
 
     elem.on('dblclick', function(e){
-      $.forEach('.todo-main',elem,function(el){el.classList.add('hidden');});
-      $('.edit-todo',elem).classList.add('editing');
+      $.display('.todo-main',elem, 'none');
+      $.display('.edit-todo',elem, 'inline');
       $('.edit-todo',elem).focus();
       $('.edit-todo',elem).value = $('.todo-text',elem).textContent;
       $('.edit-todo',elem).on('keypress', function(e){
         if (e.which === 13)
         updateTodo();
       });
-      $('.edit-todo',elem).on('blur', function(e){
-        updateTodo();
-      });
 
       function updateTodo () {
-        $.forEach('.todo-main',elem,function(el){el.classList.remove('hidden');});
+        $.display('.todo-main',elem, 'block');
         $('.todo-text',elem).textContent = $('.edit-todo',elem).value;
         storeTodos();
-        $('.edit-todo',elem).classList.remove('editing');
+        $.display('.edit-todo',elem, 'none');
       }
     });
   });
 
-  TodoInput.append();
+  function storeTodos () {
+    localStorage.setItem('todos',JSON.stringify(todo.getDataAll()));
+  }
+
   JSON.parse(localStorage.getItem('todos')).forEach(function(elem){
     todo.append(elem);});
 }

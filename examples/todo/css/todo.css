@@ -97,16 +97,13 @@ outline: none;
 
 .edit-todo{
   display: none;
+  width: 97%;
+  border: 0px;
+  font-size: 22px;
+  padding: 15px
 }
 
 .hidden{
 display: none;
-}
-
-.editing{
-  display: inline;
-  width: 97%;
-  border: 0px;
-  font-size: 22px;
-  padding: 15px;
+;
 }

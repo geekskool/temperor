@@ -49,7 +49,9 @@ Template.prototype.append = function(data) {
   if (data) {
     Object.keys(data).forEach(function(key) {
       var dataField = $('[data-field=' + key + ']', clone)
-      if (dataField) {
+      if(dataField.type === 'checkbox')
+        dataField.checked = data[key]
+      else if (dataField) {
         var value = data[key]
         if ($.isString(value) && value.match(/</)) {
           dataField.innerHTML = value
@@ -109,7 +111,10 @@ Template.prototype.getData = function(index) {
   dataFields.forEach(function(dataField) {
     var key = dataField.getAttribute('data-field'),
         value
-    if (dataField.tagName === 'INPUT' || dataField.tagName == 'TEXTAREA') {
+    if(dataField.type && dataField.type === 'checkbox') {
+      value = dataField.checked
+    }
+    else if (dataField.tagName === 'INPUT' || dataField.tagName == 'TEXTAREA') {
       value = dataField.value
     } else {
       value = dataField.textContent
@@ -117,6 +122,15 @@ Template.prototype.getData = function(index) {
     data[key] = value
   })
   return data
+}
+
+Template.prototype.getDataAll = function() {
+  var items = [];
+  var self = this;
+  this.clones.forEach(function(item,i){
+    items.push(self.getData(i))
+  })
+  return items;
 }
 
 module.exports = Template
@@ -139,27 +153,24 @@ if (tinix.supported && !Element.prototype.on) {
   Element.prototype.on = Element.prototype.addEventListener
 }
 
+if (tinix.supported && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach
+}
+
 tinix.all = function(selector, elem) {
     elem = elem || document
     return elem.querySelectorAll(selector)
 }
 
-tinix.forEach = function(selector,elem, func) {
-    Array.prototype.forEach.call(this.all(selector, elem), func)
+
+tinix.style = function(selector, elem, key, val) {
+  this.all(selector, elem).forEach(function(el){
+    el.style[key] = val;
+  })
 }
 
-tinix.map = function(selector, func) {
-    return Array.prototype.map.call(this.all(selector), func)
-}
-
-tinix.style = function(selector, iteratee, val) {
-    this.forEach(s, function(elem) {
-       elem.style[iteratee] = val
-    })
-}
-
-tinix.display = function(selector, val) {
-    this.style(selector, "display", val)
+tinix.display = function(selector, elem, val) {
+    this.style(selector, elem, "display", val)
 }
 
 tinix.ready = function(func) {
@@ -225,15 +236,6 @@ var Template = require('../../../lib/temperor.js');
 
 function start() {
 
-  function storeTodos () {
-    var items = [];
-    for(var i = 0; i< todo.clones.length; i++) {
-      console.log(todo.getData(i));
-      items.push(todo.getData(i));
-    }
-    localStorage.setItem('todos',JSON.stringify(items));
-  }
-
   new Template('Resp1ColMax640').append();
 
   var TodoInput = new Template('todo-input');
@@ -247,6 +249,8 @@ function start() {
     });
   });
 
+  TodoInput.append();
+
   var todo = new Template('todo');
   todo.willRender(function(elem) {
     $('.delete', elem).on('click', function(e) {
@@ -259,28 +263,28 @@ function start() {
     });
 
     elem.on('dblclick', function(e){
-      $.forEach('.todo-main',elem,function(el){el.classList.add('hidden');});
-      $('.edit-todo',elem).classList.add('editing');
+      $.display('.todo-main',elem, 'none');
+      $.display('.edit-todo',elem, 'inline');
       $('.edit-todo',elem).focus();
       $('.edit-todo',elem).value = $('.todo-text',elem).textContent;
       $('.edit-todo',elem).on('keypress', function(e){
         if (e.which === 13)
         updateTodo();
       });
-      $('.edit-todo',elem).on('blur', function(e){
-        updateTodo();
-      });
 
       function updateTodo () {
-        $.forEach('.todo-main',elem,function(el){el.classList.remove('hidden');});
+        $.display('.todo-main',elem, 'block');
         $('.todo-text',elem).textContent = $('.edit-todo',elem).value;
         storeTodos();
-        $('.edit-todo',elem).classList.remove('editing');
+        $.display('.edit-todo',elem, 'none');
       }
     });
   });
 
-  TodoInput.append();
+  function storeTodos () {
+    localStorage.setItem('todos',JSON.stringify(todo.getDataAll()));
+  }
+
   JSON.parse(localStorage.getItem('todos')).forEach(function(elem){
     todo.append(elem);});
 }
