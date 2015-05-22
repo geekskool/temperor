@@ -125,12 +125,9 @@ Template.prototype.getData = function(index) {
 }
 
 Template.prototype.getDataAll = function() {
-  var items = [];
-  var self = this;
-  this.clones.forEach(function(item,i){
-    items.push(self.getData(i))
-  })
-  return items;
+  return this.clones.map(function(item,i){
+    return this.getData(i)
+  }.bind(this))
 }
 
 module.exports = Template
@@ -163,14 +160,14 @@ tinix.all = function(selector, elem) {
 }
 
 
-tinix.style = function(selector, elem, key, val) {
-  this.all(selector, elem).forEach(function(el){
+tinix.style = function(selector, rootElem, key, val) {
+  this.all(selector, rootElem).forEach(function(el){
     el.style[key] = val;
   })
 }
 
-tinix.display = function(selector, elem, val) {
-    this.style(selector, elem, "display", val)
+tinix.display = function(selector, rootElem, val) {
+    this.style(selector, rootElem, "display", val)
 }
 
 tinix.ready = function(func) {
