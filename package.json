@@ -1,2 +1,19 @@
 { "name" : "temperor",
   "main" : "./lib/temperor.js" }
+  {
+    "name"          : "temperor",
+    "description"   : "Lightweight JavaScript library for HTML5 Templates.",
+    "keywords"      : ["templates", "html5", "ajax", "javascript", "library", "client", "browser"],
+    "author"        : "Santosh Rajan <santrajan@gmail.com>",
+    "contributors"  :[{
+      "name": "Akshay Kanthi",
+      "email": "aksanoble@gmail.com"
+    }],
+    "repository"    : {"type": "git", "url": "git://github.com/geekskool/temperor.git"},
+    "main"          : "./lib/temperor.js",
+    "version"       : "0.1.0",
+    "license"       : "MIT",
+    "dependencies": {
+      "tinix": "~0.2.1"
+    }
+  }

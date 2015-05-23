@@ -1,4 +1,4 @@
-var $ = require('../../../lib/tinix.js');
+var $ = require('tinix');
 var Template = require('../../../lib/temperor.js');
 
 function start() {
