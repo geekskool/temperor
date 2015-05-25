@@ -22,7 +22,7 @@
     "url": "git://github.com/geekskool/temperor.git"
   },
   "main": "./lib/temperor.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "dependencies": {
     "tinix": "~0.2.1"
