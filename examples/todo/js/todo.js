@@ -1,5 +1,5 @@
 var $ = require('tinix');
-var Template = require('../../../lib/temperor.js');
+var Template = require('temperor');
 
 function start() {
 
