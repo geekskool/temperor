@@ -1,109 +1,95 @@
 body {
-  padding: 0;
-  margin: 0;
-  font-family: "Open Sans";
-  font-weight: 300;
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans";
+    font-weight: 300;
 }
-
-.todos{
-  width: 100%;
-  margin-top: 0px;
-  margin-left: 0px;
-  box-sizing: border-box;
-  border: 1px solid black;
-  font-size: 30px;
-  padding: 10px;
+.todos {
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    font-size: 30px;
+    padding: 10px;
 }
-.todos:not(:last-child){
-  border-bottom: 0px;
+.todos:not(:last-child) {
+    border-bottom: 0px;
 }
-
-.todos:hover .delete{
-display: block;
+.todos:hover .delete {
+    display: block;
 }
-
 input[type="checkbox"] {
-outline: none;
+    outline: none;
 }
-
 .check {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
-
- .check:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="5"/></svg>');
+.check:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="5"/></svg>');
 }
 .check:checked:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
-
 .check:checked ~label {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
-
 .delete {
-  display:none;
-	border: 0;
-	background: none;
-	font-size: 100%;
-	vertical-align: middle;
-	font-family: inherit;
-	font-weight: inherit;
-	color: inherit;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	float: right;
+    display: none;
+    border: 0;
+    background: none;
+    font-size: 100%;
+    vertical-align: middle;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    float: right;
 }
 .delete:after {
-	content: '×';
+    content: '×';
 }
-
-
 .Resp1ColMax640 {
-  margin: 0;
-  padding: 0;
-  width: 640px;
-  box-sizing: border-box;
-  margin: auto;
+    margin: 0;
+    padding: 0;
+    width: 640px;
+    box-sizing: border-box;
+    margin: auto;
 }
-  @media (max-width: 640px) {
+@media (max-width: 640px) {
     .Resp1ColMax640 {
-      width: 100%;
-      box-sizing: border-box;
+        width: 100%;
+        box-sizing: border-box;
     }
-  }
-
-  .Resp1ColMax640 h4 {
+}
+.Resp1ColMax640 h4 {
     padding: 20px;
     margin: 0;
     line-height: 60px;
     background-color: #afeeee;
-  }
-
+}
 .formfield {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 .formfield p {
-  padding: 20px;
+    padding: 20px;
 }
 .formfield input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid red;
-  font-size: 30px;
-  padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid red;
+    font-size: 30px;
+    padding: 20px;
 }
-
-.edit-todo{
-  display: none;
-  width: 97%;
-  border: 0px;
-  font-size: 22px;
-  padding: 15px
+.edit-todo {
+    display: none;
+    width: 97%;
+    border: 0px;
+    font-size: 22px;
+    padding: 15px;
 }
-
-.hidden{
-display: none;
-;
+.hidden {
+    display: none;
 }
