@@ -10,6 +10,13 @@
 * It works!
 * The required [Todo Demo](http://geekskool.github.io/temperor/examples/todo/)
 
+### Install
+
+    $ npm install temperor
+    $ browserify temeperor -o bundle.js
+
+Include bundle.js in your html. See the todo example above.
+
 ### Authors
 
 * [Santosh Rajan](https://github.com/santoshrajan)
