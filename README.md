@@ -8,12 +8,12 @@
 * It is a hack on the template tag
 * Use with a sense of humour
 * It works!
-* The required [http://geekskool.github.io/temperor/examples/todo/](Todo Demo)
+* The required [Todo Demo](http://geekskool.github.io/temperor/examples/todo/)
 
 ### Authors
 
-* [https://github.com/santoshrajan](Santosh Rajan)
-* [https://github.com/aksanoble](Akshay Kanthi)
+* [Santosh Rajan](https://github.com/santoshrajan)
+* [Akshay Kanthi](https://github.com/aksanoble)
 
 
 
