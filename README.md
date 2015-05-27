@@ -14,14 +14,10 @@
 
 ### Install
 
-In your main.js
-
-    var Template = require('temperor')
-
 Install temperor and browserify
 
     $ npm install temperor
-    $ browserify main.js -o bundle.js
+    $ browserify -r temperor -o bundle.js
 
 Include bundle.js in your html. See the todo example above.
 
