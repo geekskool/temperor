@@ -39,7 +39,7 @@ function Template(name) {
  * if data value has '<' innerHTML is replaced.
  */
 
-Template.prototype.append = function(data) {
+Template.prototype.append = function(data, to) {
 
     var clone = document.importNode(this.template.content, true)
     if (data) {
@@ -60,7 +60,11 @@ Template.prototype.append = function(data) {
     if (this.willRenderCallback) {
         this.willRenderCallback(clone.firstChild)
     }
-    this.clones.push(this.template.parentElement.appendChild(clone.firstChild))
+    to = to || this.template.parentElement
+    var firstChild = clone.firstChild
+    to.appendChild(firstChild)
+    this.clones.push(firstChild)
+    return firstChild
 }
 
 Template.prototype.remove = function(elem) {
@@ -227,20 +231,20 @@ var Template = require('temperor')
 
 function start() {
 
-    new Template('Resp1ColMax640').append()
+    var mainDiv = new Template('Resp1ColMax640').append()
 
     var TodoInput = new Template('todo-input')
 
     TodoInput.willRender(function(elem) {
         var todoInput = $('input', elem)
         todoInput.on('change', function(e) {
-            todo.append({todo: todoInput.value})
+            todo.append({todo: todoInput.value}, mainDiv)
             storeTodos()
             todoInput.value = ''
         })
     })
 
-    TodoInput.append()
+    TodoInput.append(null, mainDiv)
 
     var todo = new Template('todo')
     todo.willRender(function(elem) {

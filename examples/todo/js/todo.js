@@ -3,20 +3,20 @@ var Template = require('temperor')
 
 function start() {
 
-    new Template('Resp1ColMax640').append()
+    var mainDiv = new Template('Resp1ColMax640').append()
 
     var TodoInput = new Template('todo-input')
 
     TodoInput.willRender(function(elem) {
         var todoInput = $('input', elem)
         todoInput.on('change', function(e) {
-            todo.append({todo: todoInput.value})
+            todo.append({todo: todoInput.value}, mainDiv)
             storeTodos()
             todoInput.value = ''
         })
     })
 
-    TodoInput.append()
+    TodoInput.append(null, mainDiv)
 
     var todo = new Template('todo')
     todo.willRender(function(elem) {
