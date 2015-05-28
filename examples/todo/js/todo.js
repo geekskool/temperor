@@ -9,10 +9,12 @@ function start() {
 
     TodoInput.willRender(function(elem) {
         var todoInput = $('input', elem)
-        todoInput.on('change', function(e) {
-            todo.append({todo: todoInput.value}, mainDiv)
-            storeTodos()
-            todoInput.value = ''
+        todoInput.on('keypress', function(e) {
+            if (e.which === 13) {
+                todo.append({todo: todoInput.value}, mainDiv)
+                storeTodos()
+                todoInput.value = ''
+            }
         })
     })
 
@@ -20,6 +22,9 @@ function start() {
 
     var todo = new Template('todo')
     todo.willRender(function(elem) {
+        var todoView = elem.childNodes[1]
+        var todoEdit = elem.childNodes[3]
+
         $('.delete', elem).on('click', function(e) {
             todo.remove(elem)
             storeTodos()
@@ -30,20 +35,20 @@ function start() {
         })
 
         elem.on('dblclick', function(e){
-            $.display('.todo-main',elem, 'none')
-            $.display('.edit-todo',elem, 'inline')
-            $('.edit-todo',elem).focus()
-            $('.edit-todo',elem).value = $('.todo-text',elem).textContent
-            $('.edit-todo',elem).on('keypress', function(e){
+            todoView.style.display = 'none'
+            todoEdit.style.display = 'inline'
+            todoEdit.focus()
+            todoEdit.value = todoView.childNodes[3].textContent;
+            todoEdit.on('keypress', function(e){
                 if (e.which === 13)
                 updateTodo()
             })
 
             function updateTodo () {
-                $.display('.todo-main',elem, 'block')
-                $('.todo-text',elem).textContent = $('.edit-todo',elem).value
+                todoEdit.style.display = 'none'
+                todoView.style.display = 'block'
+                todoView.childNodes[3].textContent = todoEdit.value
                 storeTodos()
-                $.display('.edit-todo',elem, 'none')
             }
         })
     })
