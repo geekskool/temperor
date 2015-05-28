@@ -53,7 +53,7 @@ function start() {
     }
 
     JSON.parse(localStorage.getItem('todos')).forEach(function(elem){
-        todo.append(elem)
+        todo.append(elem, mainDiv);
     })
 }
 
