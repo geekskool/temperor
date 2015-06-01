@@ -140,7 +140,7 @@ function tinix(selector, elem) {
     return elem.querySelector(selector)
 }
 
-tinix.version = "0.2.2"
+tinix.version = "0.2.3"
 
 tinix.supported = !!document.addEventListener
 
@@ -184,7 +184,7 @@ tinix.isObject = function(str) {
 
 tinix.getR = function(callback) {
     var request = new XMLHttpRequest()
-    responseText.onload = function() {
+    request.onload = function() {
         if (request.status == 200) {
             if (request.getResponseHeader("Content-Type") == "application/json") {
                 callback(null, JSON.parse(request.responseText))
